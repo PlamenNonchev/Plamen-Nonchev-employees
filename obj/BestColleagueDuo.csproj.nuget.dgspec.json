@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\plame\\Desktop\\BestColleagueDuo\\BestColleagueDuo\\BestColleagueDuo\\BestColleagueDuo.csproj": {}
+    "C:\\Users\\plame\\Desktop\\Plamen-Nonchev-employees\\BestColleagueDuo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\plame\\Desktop\\BestColleagueDuo\\BestColleagueDuo\\BestColleagueDuo\\BestColleagueDuo.csproj": {
+    "C:\\Users\\plame\\Desktop\\Plamen-Nonchev-employees\\BestColleagueDuo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plame\\Desktop\\BestColleagueDuo\\BestColleagueDuo\\BestColleagueDuo\\BestColleagueDuo.csproj",
+        "projectUniqueName": "C:\\Users\\plame\\Desktop\\Plamen-Nonchev-employees\\BestColleagueDuo.csproj",
         "projectName": "BestColleagueDuo",
-        "projectPath": "C:\\Users\\plame\\Desktop\\BestColleagueDuo\\BestColleagueDuo\\BestColleagueDuo\\BestColleagueDuo.csproj",
+        "projectPath": "C:\\Users\\plame\\Desktop\\Plamen-Nonchev-employees\\BestColleagueDuo.csproj",
         "packagesPath": "C:\\Users\\plame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plame\\Desktop\\BestColleagueDuo\\BestColleagueDuo\\BestColleagueDuo\\obj\\",
+        "outputPath": "C:\\Users\\plame\\Desktop\\Plamen-Nonchev-employees\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\plame\\AppData\\Roaming\\NuGet\\NuGet.Config",
