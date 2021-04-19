@@ -1,0 +1,13 @@
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\bin\Debug\netcoreapp3.1\BestColleagueDuo.exe
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\bin\Debug\netcoreapp3.1\BestColleagueDuo.deps.json
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\bin\Debug\netcoreapp3.1\BestColleagueDuo.runtimeconfig.json
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\bin\Debug\netcoreapp3.1\BestColleagueDuo.runtimeconfig.dev.json
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\bin\Debug\netcoreapp3.1\BestColleagueDuo.dll
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\bin\Debug\netcoreapp3.1\BestColleagueDuo.pdb
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\obj\Debug\netcoreapp3.1\BestColleagueDuo.csprojAssemblyReference.cache
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\obj\Debug\netcoreapp3.1\BestColleagueDuo.AssemblyInfoInputs.cache
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\obj\Debug\netcoreapp3.1\BestColleagueDuo.AssemblyInfo.cs
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\obj\Debug\netcoreapp3.1\BestColleagueDuo.csproj.CoreCompileInputs.cache
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\obj\Debug\netcoreapp3.1\BestColleagueDuo.dll
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\obj\Debug\netcoreapp3.1\BestColleagueDuo.pdb
+C:\Users\plame\Desktop\Plamen-Nonchev-employees\obj\Debug\netcoreapp3.1\BestColleagueDuo.genruntimeconfig.cache
