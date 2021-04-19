@@ -10,29 +10,11 @@ namespace BestColleagueDuo
         {
             string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Public\TestFolder\employeeProjects.txt");
 
-            List<ProjectEmployee> projectEmployees = new List<ProjectEmployee>();
-
-            foreach (var line in lines)
-            {
-                string[] splitLine = line.Split(",");
-                int projectId = int.Parse(splitLine[0]);
-                int employeeId = int.Parse(splitLine[1]);
-                DateTime dateFrom = DateTime.Parse(splitLine[2]);
-                DateTime dateTo;
-                if (splitLine[3] == "NULL")
-                {
-                    dateTo = DateTime.Now.Date;
-                }
-                else
-                {
-                    dateTo = DateTime.Parse(splitLine[3]);
-                }
-                ProjectEmployee pe = new ProjectEmployee(projectId, employeeId, dateFrom, dateTo);
-                projectEmployees.Add(pe);
-            }
+            FileParser fp = new FileParser(lines);
+            ICollection<ProjectEmployee> projectEmployees = fp.GenerateProjectEmployees();
 
             List<EmployeeDuo> employeeDuos = new List<EmployeeDuo>();
-            var projectIds = projectEmployees.Select(p => p.ProjectId).Distinct().ToList();
+            var projectIds = fp.GetProjectIds().Distinct();
 
             foreach (var projectId in projectIds)
             {
@@ -41,47 +23,18 @@ namespace BestColleagueDuo
 
                 for (int i = 0; i < employeeIds.Length; i++)
                 {
-                    int emp1 = employeeIds[i];
-                    var projEmp1 = projectEmployees.FirstOrDefault(pe => pe.ProjectId == projectId && pe.EmployeeId == emp1);
-                    DateTime startDate1 = projEmp1.DateFrom;
-                    DateTime endDate1 = projEmp1.DateTo;
+                    var projEmp1 = projectEmployees.FirstOrDefault(pe => pe.ProjectId == projectId && pe.EmployeeId == employeeIds[i]);
                     for (int j = i + 1; j < employeeIds.Length; j++)
                     {
-                        
-                        int emp2 = employeeIds[j];
-                        var projEmp2 = projectEmployees.FirstOrDefault(pe => pe.ProjectId == projectId && pe.EmployeeId == emp2);
-                        DateTime startDate2 = projEmp2.DateFrom;
-                        DateTime endDate2 = projEmp2.DateTo;
-
-                        bool overlap = startDate1 < endDate2 && startDate2 < endDate1;
+                        var projEmp2 = projectEmployees.FirstOrDefault(pe => pe.ProjectId == projectId && pe.EmployeeId == employeeIds[j]);
+                        bool overlap = projEmp1.DateFrom < projEmp2.DateTo && projEmp2.DateFrom < projEmp1.DateTo;
                         if (overlap)
                         {
-                            DateTime overlapStart;
-                            DateTime overlapEnd;
-                            if (startDate1 < startDate2)
+                            int overlapDays = GetOverlapDays(projEmp1.DateFrom, projEmp2.DateFrom, projEmp1.DateTo, projEmp2.DateTo);
+                            var empDuo = employeeDuos.FirstOrDefault(ed => ed.Employee1Id == projEmp1.EmployeeId && ed.Employee2Id == projEmp2.EmployeeId);
+                            if (empDuo == null)
                             {
-                                overlapStart = startDate2;
-                            }
-                            else
-                            {
-                                overlapStart = startDate1;
-                            }
-
-                            if (endDate1 < endDate2)
-                            {
-                                overlapEnd = endDate1;
-                            }
-                            else
-                            {
-                                overlapEnd = endDate2;
-                            }
-
-                            int overlapDays = (overlapEnd - overlapStart).Days;
-
-                            var empDuo = employeeDuos.FirstOrDefault(ed => ed.Employee1Id == emp1 && ed.Employee2Id == emp2);
-                            if(empDuo == null)
-                            {
-                                EmployeeDuo ed = new EmployeeDuo(emp1, emp2, overlapDays);
+                                EmployeeDuo ed = new EmployeeDuo(projEmp1.EmployeeId, projEmp2.EmployeeId, overlapDays);
                                 employeeDuos.Add(ed);
                             }
                             else
@@ -89,15 +42,42 @@ namespace BestColleagueDuo
                                 empDuo.WorkedTogetherPeriod += overlapDays;
                             }
                         }
-                        
-
-
                     }
                 }
             }
 
-            var bestDuo = employeeDuos.OrderByDescending(ed => ed.WorkedTogetherPeriod).First();
-            Console.WriteLine($"Employee {bestDuo.Employee1Id} and employee {bestDuo.Employee2Id} make the best duo!\nThey have worked together for a total of {bestDuo.WorkedTogetherPeriod} days");
+
+            var bestDuo = employeeDuos.OrderByDescending(ed => ed.WorkedTogetherPeriod).FirstOrDefault();
+            if(bestDuo != null)
+            Console.WriteLine($"Employee {bestDuo.Employee1Id} and employee {bestDuo.Employee2Id} make the best duo!\n" +
+                $"They have worked together for a total of {bestDuo.WorkedTogetherPeriod} days");
+        }
+        static int GetOverlapDays(DateTime startDate1, DateTime startDate2, DateTime endDate1, DateTime endDate2)
+        {
+            DateTime overlapStart;
+            DateTime overlapEnd;
+            if (startDate1 < startDate2)
+            {
+                overlapStart = startDate2;
+            }
+            else
+            {
+                overlapStart = startDate1;
+            }
+
+            if (endDate1 < endDate2)
+            {
+                overlapEnd = endDate1;
+            }
+            else
+            {
+                overlapEnd = endDate2;
+            }
+
+            int overlapDays = (overlapEnd - overlapStart).Days;
+
+            return overlapDays;
+            
         }
     }
 }
